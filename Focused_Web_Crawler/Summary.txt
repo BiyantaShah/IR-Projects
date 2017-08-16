@@ -1,0 +1,46 @@
+1. Your seed urls
+
+a. http://en.wikipedia.org/wiki/List_of_maritime_disasters
+b. http://en.wikipedia.org/wiki/Costa_Concordia_disaster
+c. http://www.telegraph.co.uk/news/worldnews/europe/italy/10312026/Costa-Concordia-recovery-timeline-of-cruise-ship-disaster.html
+d. http://en.wikipedia.org/wiki/Costa_Concordia
+
+2. Count of unique urls crawled individually
+
+20,000 unique urls crawled individually
+
+3. Time taken to crawl
+
+Approximately 6-7 hours.
+
+4. Total disk space of your crawl
+
+4.21 GB
+
+5. Time taken to merge
+
+90-100 minutes
+
+6. Count of unique urls in Merged Index
+
+49,323 unique urls in Merged Index
+
+7. Merged ES index size
+
+18986789306 bytes = 18.98 GB
+
+
+Explanation:
+
+1. How do you decide which links to put in your Frontier List and which to ignore.
+
+I have a list of 5 words which I think are important to be in the document, if I need documents relevant to the topic given (Maritime disasters). I calculate the score of each document based on how many times these words appear in the document text. If the score of that particular document goes above the threshold that I have set, then it’s out-links go to the Frontier, else I ignore it’s outlines. Since this starts with the seed URL’s and they are compulsory to crawl, its outlines are validated and this holds true for each level of my frontier.
+
+2. How do you decide which link to crawl next from your Frontier list.
+
+There are 3 measures on which I decide which link to crawl first
+- Relevance score
+- In-degree count
+- Waiting time in the Frontier list.
+
+For each link , I first check its relevance and compare it with the following link in the Frontier list for the same depth. If the relevance score is the same, I check with the in-degree of the links. If that too is the same then I go with checking the waiting time of the links. The link that was longer in the queue, gets crawled first.
